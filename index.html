@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#ff6fae"><title>Per te, amore mio ♡</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&family=Pacifico&display=swap');
+:root{--pink:#ff6fae;--hot:#e83e89;--light:#ffe4f0;--white:#fffafc}
+*{box-sizing:border-box}body{margin:0;background:var(--white);color:#a52b65;font-family:Nunito,sans-serif;overflow-x:hidden}
+main{max-width:720px;margin:auto;padding:18px 18px 35px;position:relative}
+.hearts{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:-1}
+.heart{position:absolute;color:#ffb4d5;opacity:.45;font-size:24px;animation:float 9s infinite ease-in-out}
+@keyframes float{0%,100%{transform:translateY(0) rotate(-10deg)}50%{transform:translateY(-25px) rotate(10deg)}}
+.hero{text-align:center;padding:25px 8px 10px}
+.betty{font-size:76px;line-height:1;margin-bottom:8px;filter:drop-shadow(0 5px 0 #ffd3e6)}
+.script{font-family:Pacifico,cursive}
+h1{font-size:clamp(2rem,8vw,3.4rem);line-height:1.15;margin:12px 0;color:var(--hot)}
+.subtitle{font-size:1.05rem;color:#d84c91}
+.card{background:#fff;border:2px solid #ffd0e5;border-radius:25px;padding:22px;margin:18px 0;box-shadow:0 8px 22px #f8c7df55}
+.photo-area{border:2px dashed #ff9bc8;border-radius:20px;min-height:260px;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;background:#fff7fb;color:#ec6ca9}
+.photo-area img{width:100%;height:100%;max-height:440px;object-fit:cover;display:none}
+.photo-placeholder{padding:25px;font-size:1.1rem}.photo-placeholder .big{font-size:54px;display:block}
+.btn{border:0;background:linear-gradient(135deg,#ff8bc0,#e83e89);color:white;padding:14px 22px;border-radius:999px;font:800 1rem Nunito;display:block;width:100%;margin:15px 0;cursor:pointer;box-shadow:0 5px 0 #d82d78}
+input[type=file]{display:none}
+label.btn{text-align:center}
+.lockbox{background:#ffe3f0;border-radius:22px;padding:20px;margin-top:20px}
+input[type=text]{width:100%;border:2px solid #ffb4d5;border-radius:16px;padding:14px;font:600 1rem Nunito;color:#a52b65;background:white;margin:10px 0}
+#secret{display:none;margin-top:18px;padding:18px;background:#fff4fa;border-radius:18px;line-height:1.7}
+.note{text-align:center;padding:25px 12px;font-size:1.1rem}.note .script{font-size:1.6rem;color:#e83e89}
+footer{text-align:center;padding:25px;color:#f06ba9;font-size:1.4rem}
+.small{font-size:.85rem;color:#bd6a91;text-align:center}
+</style></head>
+<body>
+<div class="hearts" id="hearts"></div>
+<main>
+<section class="hero">
+<div class="betty" aria-label="Betty Boop">💗</div>
+<div class="script" style="font-size:1.3rem">A little something for you</div>
+<h1>Per la mia<br>ragazza speciale ♡</h1>
+<p class="subtitle script">Sei il mio posto preferito nel mondo</p>
+</section>
+<section class="card">
+<div class="photo-area" id="photoArea">
+<div class="photo-placeholder" id="placeholder"><span class="big">♡ 📷 ♡</span><b>La nostra foto preferita</b><br><small>Inseriscila qui sotto!</small></div>
+<img id="preview" alt="La nostra foto">
+</div>
+<label class="btn" for="photo">♡ Scegli una foto ♡</label><input id="photo" type="file" accept="image/*">
+<p class="small">La foto resta sul tuo dispositivo: non viene caricata online.</p>
+</section>
+<section class="lockbox">
+<div class="script" style="font-size:1.35rem;text-align:center">Un piccolo segreto… 🔐</div>
+<p style="text-align:center;margin:8px 0">Inserisci il codice speciale per leggere il messaggio</p>
+<input type="text" id="code" placeholder="Il nostro codice…" inputmode="numeric">
+<button class="btn" id="unlock">Apri il mio messaggio 💌</button>
+<div id="secret"><div class="script" style="font-size:1.5rem;text-align:center">Per te, amore mio</div>
+<p>Grazie per esserci, per farmi sorridere anche nelle giornate no e per essere semplicemente te. Ogni momento con te è qualcosa che voglio custodire.</p>
+<p>Sei speciale più di quanto riesca a spiegare. Ti sceglierei ancora, e ancora. ♡</p>
+<div class="script" style="text-align:center;font-size:1.8rem">Ti amo tantissimo 💗</div></div>
+</section>
+<section class="note"><div class="script">“Tu sei la mia felicità.”</div><p>Un sito piccolo, per una persona immensa.</p></section>
+<footer>♡ &nbsp; ∞ &nbsp; ♡</footer>
+</main>
+<script>
+// FOTO: scegli un'immagine dalla galleria del telefono
+const photo=document.getElementById('photo'), preview=document.getElementById('preview'), placeholder=document.getElementById('placeholder');
+photo.addEventListener('change',()=>{const f=photo.files[0];if(!f)return;preview.src=URL.createObjectURL(f);preview.style.display='block';placeholder.style.display='none'});
+// CODICE: cambia "143" con il vostro codice (es. una data o un numero speciale)
+const CODICE_SEGRETO="143";
+document.getElementById('unlock').addEventListener('click',()=>{if(document.getElementById('code').value.trim()===CODICE_SEGRETO){document.getElementById('secret').style.display='block';document.getElementById('secret').scrollIntoView({behavior:'smooth',block:'center'})}else alert('Ops… codice sbagliato 💗 Riprova!')});
+document.getElementById('code').addEventListener('keydown',e=>{if(e.key==='Enter')document.getElementById('unlock').click()});
+// cuoricini decorativi
+const box=document.getElementById('hearts');for(let i=0;i<24;i++){const h=document.createElement('span');h.className='heart';h.textContent=['♡','♥','💕'][i%3];h.style.left=Math.random()*100+'%';h.style.top=Math.random()*100+'%';h.style.animationDelay=Math.random()*8+'s';h.style.fontSize=(16+Math.random()*25)+'px';box.appendChild(h)}
+</script></body></html>
